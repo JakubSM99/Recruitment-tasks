@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, flash
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/session', methods=['GET', 'POST'])
+@auth.route('/session')
 def session():
     return render_template("session.html", boolean = True)
 
