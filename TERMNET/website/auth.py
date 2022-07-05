@@ -16,4 +16,4 @@ def game():
 
 @auth.route('/quit')
 def quit():
-    return "<p>Quit</p>"
+    return render_template("home.html")
