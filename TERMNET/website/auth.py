@@ -2,9 +2,9 @@ from flask import Blueprint, render_template
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/session')
+@auth.route('/session', methods=['GET', 'POST'])
 def session():
-    return render_template("session.html")
+    return render_template("session.html", boolean = True)
 
 @auth.route('/statistics')
 def statistics():

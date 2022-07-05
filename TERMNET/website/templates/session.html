@@ -1,5 +1,31 @@
 {%extends "base.html"%}
 {% block title %}Session{% endblock %}
 {% block content%}
-<h1>This is the session page</h1>
+<form mathod="POST">
+    <h3 align="center">
+        Start Session
+    </h3>
+    <div class="form-group">
+        <label for="PlayerName">Player Name</label>
+        <input 
+            type="PlayerName" 
+            class="form-control" 
+            id="PlayerName" 
+            name="PlayerName" 
+            placeholder="Enter Player Name"
+        />
+    </div>
+    <div class="form-group">
+        <label for="PlayerTag">Player Tag</label>
+        <input 
+            type="PlayerTag" 
+            class="form-control" 
+            id="PlayerTag" 
+            name="PlayerTag" 
+            placeholder="Enter Player Tag"
+        />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Start Session</button>
+</form>
 {%endblock%}
