@@ -1,11 +1,19 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 auth = Blueprint('auth', __name__)
 
 @auth.route('/session')
 def session():
-    return"<p>Session</p>"
+    return render_template("session.html")
 
-@auth.route('/home')
-def home():
-    return "<p>home</p>"
+@auth.route('/statistics')
+def statistics():
+    return render_template("statistics.html")
+
+@auth.route('/game')
+def game():
+    return render_template("game.html")
+
+@auth.route('/quit')
+def quit():
+    return "<p>Quit</p>"

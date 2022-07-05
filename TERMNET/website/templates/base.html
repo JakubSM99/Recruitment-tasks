@@ -22,20 +22,30 @@
     <body>
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar">
+            <button 
+                class="navbar-toggler" 
+                type="button" 
+                data-toggle="collapse" 
+                data-target="#navbar"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbar">
-                <a class="nav-item nav-link" id="session" href="/session">Session</a>
-                <a class="nav-item nav-link" id="statics" href="/statics">Statics</a>
-                <a class="nav-item nav-link" id="game" href="/game">Game</a>
-                <a class="nav-item nav-link" id="home" href="/home">Home</a>
-
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" id="session" href="/session">Session</a>
+                    <a class="nav-item nav-link" id="statistics" href="statistics">Statistics</a>
+                    <a class="nav-item nav-link" id="game" href="/game">Game</a>
+                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+                    <a class="nav-item nav-link" id="quit" href="/quit">Quit</a>
+                </div>
 
             </div>
         </nav>
 
-
+        <div class="container">
+            {% block content%}
+            {%endblock%}
+        </div>
 
         <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
