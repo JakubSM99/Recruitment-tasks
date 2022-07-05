@@ -1,4 +1,8 @@
-from flask import Blueprint, render_template, request, flash
+import re
+from flask import Blueprint, render_template, request, flash, redirect, url_for
+from . models import Session
+from . import db
+from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
 
@@ -10,10 +14,30 @@ def session():
 def statistics():
     return render_template("statistics.html")
 
-@auth.route('/game')
+@auth.route('/game', methods=['GET','POST'])
+@login_required
 def game():
+    if request.method == 'POST':
+        Bet = request.form.get('Bet')
+        if Bet == 'Rock':
+            flash('You submitted your Bet', category='success')
+        elif Bet == 'rock':
+            flash('You submitted your Bet', category='success')        
+        elif Bet == 'Paper':
+            flash('You submitted your Bet', category='success')
+        elif Bet == 'paper':
+            flash('You submitted your Bet', category='success')
+        elif Bet == 'Scissors':
+            flash('You submitted your Bet', category='success')
+        elif Bet == 'scissors':
+            flash('You submitted your Bet', category='success')
+        else:
+            flash('Your Bet was incorrect, try again', category='error')
+            return render_template("game.html")
     return render_template("game.html")
 
 @auth.route('/quit')
+@login_required
 def quit():
+    logout_user()
     return render_template("home.html")

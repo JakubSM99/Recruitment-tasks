@@ -1,5 +1,21 @@
 {%extends "base.html"%}
 {% block title %}Game{% endblock %}
 {% block content%}
-<h1>This is the game page</h1>
+<form method="POST">
+    <h3 align="center">
+        Rock! Paper! Scissors!
+    </h3>
+    <div class="form-group">
+        <label for="Bet">Your Bet</label>
+        <input 
+            type="Bet" 
+            class="form-control" 
+            id="Bet" 
+            name="Bet" 
+            placeholder="Enter: Rock, Paper or Scissors!"
+        />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Submit my Bet</button>
+</form>
 {%endblock%}

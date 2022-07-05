@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from flask_login import LoginManager
 
 db = SQLAlchemy()
 
@@ -21,6 +22,14 @@ def create_app():
     from .models import Game, Session
 
     create_database(app)
+
+    login_manager = LoginManager
+    login_manager.login_view = 'views.home'
+    login_manager.init_app(app)
+
+    @login_manager.user_loaderdef 
+    def load_user(id):
+        return Session.query.get(int(id))
 
     return app
 
