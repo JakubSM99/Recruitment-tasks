@@ -1,7 +1,7 @@
 from ast import If
 import re
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from . models import Session
+from . models import Session, Roundd, Game
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 

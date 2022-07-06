@@ -1,6 +1,6 @@
 import re
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from . models import Session, Roundd, Game
+from .models import Session, Roundd, Game
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import random
@@ -19,7 +19,7 @@ def game():
         lista = ['Rock', 'Paper', 'Scissors']
         cc = random.choice(lista)
         Bet = request.form.get('Bet')
-        Kreds = Session(Kreds)
+        Kreds = Session(Kreds=Kreds, new_player=current_user)
         win = 0
         lose = 0
         if (Bet.capitalize() != 'Rock') and (Bet.capitalize() != 'Paper') and (Bet.capitalize() != 'Scissors'):
@@ -28,25 +28,27 @@ def game():
             if Bet.capitalize() == cc:
                 flash(cc, category="error")
                 flash('Remis', category="success")
+
             elif (Bet.capitalize() == 'Rock') and (cc == 'Scissors'):
                 flash(cc, category="error")
-                flash('Wygrana', category="success")
                 win = win + 1
-                Kreds = Kreds + 4
+                flash(win, category="success")
+               
             elif (Bet.capitalize() == 'Scissors') and (cc == 'Paper'):
                 flash(cc, category="error")
-                flash('Wygrana', category="success")
                 win = win + 1
-                Kreds = Kreds + 4
+                flash(win, category="success")
+                
             elif (Bet.capitalize() == 'Paper') and (cc == 'Rock'):
                 flash(cc, category="error")
-                flash('Wygrana', category="success")
                 win = win + 1
-                Kreds = Kreds + 4
+                flash(win, category="success")
+                
             else:
                 flash(cc, category="error")
-                flash('Przegrana', category="error")
                 lose = lose + 1
+                flash(lose, category="error")
+                
 
             new_roundd = Roundd(Bet=Bet, cc=cc, win=win, lose=lose, Kreds=Kreds)
             new_kreds = Session(Kreds=Kreds)
