@@ -17,16 +17,10 @@ def home():
             flash('Your Name must be greater then 3 characters', category='error')
         elif len(PlayerName) < 4:
             flash('Your Name must be less then 10 characters', category='error')
-        elif len(PlayerTag) > 4:
-            flash('Your Tag must be less then 5 characters', category='error')
-        elif len(PlayerTag) < 2:
-            flash('Your Tag must be greater then 1 character', category='error')
-        elif PlayerTag.isnumeric() == False:
-            flash('Your Tag must be a number', category='error')
         elif (player):
             flash('This Player exists, change your name', category='error')
         else:
-            new_player = Session(PlayerName=PlayerName, PlayerTag=PlayerTag)
+            new_player = Session(PlayerName=PlayerName,)
             db.session.add(new_player)
             db.session.commit()
             login_user(new_player, remember=False)

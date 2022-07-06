@@ -34,8 +34,8 @@ def game():
             flash('You submitted your Bet', category='success')
         else:
             flash('Your Bet was incorrect, try again', category='error')
-            return render_template("game.html")
-    return render_template("game.html")
+            return redirect(url_for('auth.game'))
+    return redirect(url_for('auth.game'))
 
 @auth.route('/quit')
 @login_required
