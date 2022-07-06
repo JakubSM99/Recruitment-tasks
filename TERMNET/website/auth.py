@@ -41,4 +41,4 @@ def game():
 @login_required
 def quit():
     logout_user()
-    return render_template("home.html")
+    return redirect(url_for('views.home'))

@@ -13,5 +13,4 @@ class Game(db.Model):
 class Session(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
     PlayerName = db.Column(db.String(100))
-    PlayerTag = db.Column(db.String(10))
     Kreds = db.Column(db.Integer)
