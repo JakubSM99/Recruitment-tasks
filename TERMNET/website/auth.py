@@ -19,7 +19,6 @@ def game():
         lista = ['Rock', 'Paper', 'Scissors']
         cc = random.choice(lista)
         Bet = request.form.get('Bet')
-        Kreds = Session(Kreds=Kreds, new_player=current_user)
         win = 0
         lose = 0
         if (Bet.capitalize() != 'Rock') and (Bet.capitalize() != 'Paper') and (Bet.capitalize() != 'Scissors'):
@@ -50,18 +49,18 @@ def game():
                 flash(lose, category="error")
                 
 
-            new_roundd = Roundd(Bet=Bet, cc=cc, win=win, lose=lose, Kreds=Kreds)
-            new_kreds = Session(Kreds=Kreds)
+            new_roundd = Roundd(Bet=Bet, cc=cc, win=win, lose=lose)
             db.session.add(new_roundd)
-            db.session.add(new_kreds)
             db.session.commit()
         
 
     return render_template('game.html', new_player=current_user)
 
-@auth.route('/session')
+@auth.route('/session', methods=['GET', 'POST'])
 @login_required
 def session():
+    if request.method == 'POST':
+        return redirect(url_for('auth.game', new_player=current_user))
     return render_template("session.html", new_player=current_user)
 
 @auth.route('/quit')
