@@ -23,45 +23,45 @@ def game():
             flash('Wprowadzono niepoprawne dane!', category="error")
         else:
             if Bet.capitalize() == cc:
-                flash(cc, category="error")
                 flash('Remis', category="success")
 
             elif (Bet.capitalize() == 'Rock') and (cc == 'Scissors'):
-                flash(cc, category="error")
                 win = win + 1
                 Kreds = Kreds + 4
-                flash(win, category="success")
+                flash("You won", category="success")
                
             elif (Bet.capitalize() == 'Scissors') and (cc == 'Paper'):
-                flash(cc, category="error")
                 win = win + 1
                 Kreds = Kreds + 4
-                flash(win, category="success")
+                flash("You won", category="success")
                 
             elif (Bet.capitalize() == 'Paper') and (cc == 'Rock'):
-                flash(cc, category="error")
                 win = win + 1
                 Kreds = Kreds + 4
-                flash(win, category="success")
+                flash("You won", category="success")
                 
             else:
                 flash(cc, category="error")
                 lose = lose + 1
-                flash(lose, category="error")
+                flash("You lost", category="error")
             
+
             current_user.Kreds = Kreds
             new_roundd = Roundd(Bet=Bet, cc=cc, win=win, lose=lose)
             db.session.add(new_roundd)
             db.session.commit()
-            flash(Kreds, category="success")
             return redirect(url_for('auth.score', new_player=current_user, PlayerName = current_user.PlayerName, PlayerTag = current_user.PlayerTag, Kreds = current_user.Kreds))
 
-    return render_template('game.html',  new_player=current_user, PlayerName = current_user.PlayerName, PlayerTag = current_user.PlayerTag, Kreds = current_user.Kreds)
+    return render_template('game.html',  new_player=current_user, PlayerName = current_user.PlayerName, PlayerTag = current_user.PlayerTag, Kreds = current_user.Kreds, Wins = Roundd.query.order_by(Roundd.id.desc()).first().win, Loses = Roundd.query.order_by(Roundd.id.desc()).first().lose)
 
 @auth.route('/session', methods=['GET', 'POST'])
 @login_required
 def session():
     if request.method == 'POST':
+        Kreds = int(current_user.Kreds)
+        Kreds = Kreds - 2
+        current_user.Kreds = Kreds
+        db.session.commit()
         return redirect(url_for('auth.game', new_player=current_user))
     return render_template("session.html", new_player=current_user)
 
@@ -71,11 +71,23 @@ def score():
     if request.method == 'POST':
         one = request.form.get("1")
         two = request.form.get("2")
+        three = request.form.get("3")
+        Kreds = int(current_user.Kreds)
         if one is not None:
+            Kreds = Kreds - 2
+            current_user.Kreds = Kreds
+            db.session.commit()
             return redirect(url_for('auth.game', new_player=current_user))
         elif two is not None:
             return redirect(url_for('views.home', new_player=current_user))
-    return render_template("score.html", new_player=current_user, PlayerName = current_user.PlayerName, PlayerTag = current_user.PlayerTag, Kreds = current_user.Kreds)
+        elif three is not None:
+            if Kreds == 0:
+                Kreds = Kreds + 10
+                current_user.Kreds = Kreds
+                db.session.commit()
+            else:
+                flash("You have too many Kredits", category="error")
+    return render_template("score.html", new_player=current_user, PlayerName = current_user.PlayerName, PlayerTag = current_user.PlayerTag, Kreds = current_user.Kreds, Wins = Roundd.query.order_by(Roundd.id.desc()).first().win, Loses = Roundd.query.order_by(Roundd.id.desc()).first().lose, CC = Roundd.query.order_by(Roundd.id.desc()).first().cc)
 
 @auth.route('/statistics')
 def statistics():

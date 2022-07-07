@@ -5,31 +5,16 @@
     Your Score:
 </h3>
 <br />
+<h6 align="right">Computer Choice</h6>
+<p align="right">{{CC}}</p>
 <table style="margin-left: 20px;">
-    <th>
-        <tr style="color: black; ">
-
-            <th>Player Name</th>
-            <th>Player Tag</th>
-            <th>Kreds</th>
-       </tr>
-    </th>
     <tr>
         <td>
-            <p>---</p>{{PlayerName}}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            {{PlayerTag}}
-        </td>
-    </tr>
-    <tr>
-        <td>
-            {{Kreds}}<p>---</p>
+            <h6>Your Kredits:</h6>{{Kreds}}
         </td>
     </tr>
 </table>
+<br/>
 <form method="POST">
     <button type="submit" name="1" class="btn btn-primary" style="float: left;">Play Again!</button>
     <button type="submit" name="2" class="btn btn-primary" style="float: right;">Quit Game</button>
@@ -39,6 +24,22 @@
 <span>
     <p align="left">(Costs 3 Kredits)</p>
 </span>
+<br/>
+<table style="margin-left: 20px;">
+    <tr>
+        <td>
+            <p>Your wins:</p>{{Wins}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>Your loses:</p>{{Loses}}
+        </td>
+    </tr>
+</table>
+<form method="POST">
+    <button type="submit" name="3" class="btn btn-primary" style="float: right;">Add Credits</button>
+</form>
 {%endblock%}
 {% block Nazwa %}
 {% endblock %}
