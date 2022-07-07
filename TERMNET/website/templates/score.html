@@ -4,18 +4,41 @@
 <h3 align="center">
     Your Score:
 </h3>
-<br/>
-<ul class="list-group list-group-flush" id="statistics">
-    {% for game in new_player.game %}
-        <li class="list-group-item">
-            {{ game.win , game.lose , game.Kreds, game.data }}
-        </li>
-    {% endfor%}
-</ul>
+<br />
+<table style="margin-left: 20px;">
+    <th>
+        <tr style="color: black; ">
+
+            <th>Player Name</th>
+            <th>Player Tag</th>
+            <th>Kreds</th>
+       </tr>
+    </th>
+    <tr>
+        <td>
+            <p>---</p>{{PlayerName}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{PlayerTag}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {{Kreds}}<p>---</p>
+        </td>
+    </tr>
+</table>
 <form method="POST">
-    <button type="submit" name="1" class="btn btn-primary">Play Again!</button>
-    <button type="submit" name="2" class="btn btn-primary">End Game</button>
+    <button type="submit" name="1" class="btn btn-primary" style="float: left;">Play Again!</button>
+    <button type="submit" name="2" class="btn btn-primary" style="float: right;">Quit Game</button>
 </form>
+<br/>
+<br/>
+<span>
+    <p align="left">(Costs 3 Kredits)</p>
+</span>
 {%endblock%}
 {% block Nazwa %}
 {% endblock %}

@@ -8,15 +8,10 @@ class Roundd(db.Model):
     lose = db.Column(db.Integer)
     Bet = db.Column(db.String(10))
     cc = db.Column(db.String(10))
-    Kreds = db.Column(db.Integer)
     game_id = db.Column(db.Integer, db.ForeignKey('game.id'))
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key = True) 
-    win = db.Column(db.Integer)
-    lose = db.Column(db.Integer)
-    Kreds = db.Column(db.Integer)
-    rounds = db.Column(db.Integer)
     StartTime = db.Column(db.Time)
     EndTime = db.Column(db.Time)
     GameTime = db.Column(db.Time)

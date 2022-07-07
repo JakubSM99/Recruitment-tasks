@@ -14,7 +14,6 @@
        </tr>
    </th>
    {% for session in session %}
-
             <tr>
                 <td>
                     <p>---</p>{{session.PlayerName}}
@@ -30,12 +29,6 @@
                     {{session.Kreds}}<p>---</p>
                 </td>
             </tr>
-            <tr>
-                <td>
-                    {{session.PlayerTag}}
-                </td>
-            </tr>
-
     {% endfor %}
 </table>
 {%endblock%}
