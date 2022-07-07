@@ -1,18 +1,43 @@
 {%extends "base.html"%}
-{% block title %}Session{% endblock %}
+{% block title %}Help{% endblock %}
 {% block content%}
 <h3 align="center">
-    You have started your session!
+    How it works?!
 </h3>
+
+
+
 <br/>
 <form method="POST">
-    <button type="submit" class="btn btn-primary" name="1" style="float: left;">Start the Game</button>
+    <button type="submit" class="btn btn-primary" name="1" style="float: left;">Go Back to the Game</button>
 </form>
 <br/>
 <br/>
-<span>
-    <p align="left">(Costs 2 Kredits)</p>
-</span>
+<h6> Jak Grać ?</h6>
+<p> 
+    W polu na podanie "Bet" wpisujemy Rock (Kamień), Paper (Papier), lub Scissors (Nożyczki).
+    Następnie przesyłamy naszą odpowiedź. Gdy przegramy, nie stracimy żadnych kredytów, 
+    gdy dojdzie do remisu, będziemy musieli na nowo podać nasz "Bet", a gdy wygramy otrzymamy 4 kredyty.
+    Po zakończonej rozgrywce, pojawi nam się nasz wynik, aktualna ilość kredytów, odpowiedź jaką podał przeciwnik, oraz możliwość zagrania dalej.
+    Jeśli nasza ilość kredytów spadnie do 0, nie będziemy mogli zagrać, lecz wtedy będziemy mogli skorzystać z opcji dodania kredytów, 
+    co doładuje nasze konto, aż o 10 kredytów, w przeciwnym wypadku pojawi się wiadomość, że mamy za dużo kredytów, 
+    co oznacza, że możemy spokojnie dalej grać. Jeśli znudzi nam się rozgrywka, w każdej chwili będziemy mogli ją zakończyć, 
+    czego skutkiem będzie nasze wylogowanie i zapisanie naszego wyniku.
+</p>
+<h6> Statystyka!</h6>
+<p>
+    To tutaj możesz podejrzeć swój wynik z gry którą właśnie rozegrałeś, lub też z poprzednich gire. Znajdziesz tam Id gracza, jego nazwę i tag, 
+    oraz informacje na temat tego ile posiadał kredytów na koniec, ile razy wygrał, ile razy przegrał, ile czasu trwała gra 
+    oraz datę kiedy się odbyła. Wszystkie dane wyświetlone w statystyce są z dnia, w którym sprawdza się statystykę, 
+    wcześniejsze dane są przechowywane w bazie danych gry.
+</p>
+<h6>Czym są Kredyty?</h6>
+<p>
+    Kredyty - to waluta, która umożliwia rozgrywkę, oraz porównywanie swojego wyniku z innymi graczami. 
+    Każdy kracz zaczyna z 10 kredytami, a rozpoczęcie rozgrywki kosztuje 2 kredyty. Wygrana rozgrywka daje nam 4 dodatkowe kredyty, 
+    natomiast przegrana nic nam nie zabiera (sama opłata za każdą grę jest już karą). Gdy spadniemy do zera kredytów, 
+    kontynuacja gry będzie niemożliwa, natomiast z pomocą przychodzi nam przycisk, który uzupełni nasze kredyty, aż o 10!, byśmy mogli cieszyć się grą dalej.
+</p>
 {%endblock%}
 {% block Nazwa %}
 {% endblock %}

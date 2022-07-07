@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from . models import Session, Roundd, Game
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from datetime import date, time, datetime
 
 views = Blueprint('views', __name__)
 
@@ -13,9 +14,19 @@ def home():
     if request.method == 'POST':
         PlayerName = request.form.get('PlayerName')
         PlayerTag = request.form.get('PlayerTag')
-        Kreds = 10
+        Kreds = 8
         win = 0
         lose = 0
+        GameDate = str(datetime.now().date())
+        #now = datetime.now()
+        timeNow = str(datetime.now().time())
+        time = [str(x) for x in timeNow]
+        list=[]
+        for x,y in zip(time[:9:3], time[1:9:3]):
+            z = int(x + y)
+            list.append(z)
+        time_in_sec = list[0] * 3600 + list[1] * 60 + list[2]
+        StartTime = time_in_sec
         player = Session.query.filter_by(PlayerName=PlayerName).first()
         if len(PlayerName) < 4:
             flash('Your Name must be greater then 3 characters', category='error')
@@ -30,13 +41,10 @@ def home():
         elif (player) and (player.PlayerTag == PlayerTag):
             flash('This Player exists, change your name', category='error')
         else:
-            new_player = Session(PlayerName=PlayerName, PlayerTag=PlayerTag, Kreds=Kreds)
-            new_game = Roundd(win=win, lose=lose)
-            db.session.add(new_game)
+            new_player = Session(PlayerName=PlayerName, PlayerTag=PlayerTag, Kreds=Kreds, win=win, lose=lose, StartTime=StartTime, GameDate=GameDate)
             db.session.add(new_player)
             db.session.commit()
             login_user(new_player, remember=False)
             flash('Welcome to the game ' + PlayerName + '#' + PlayerTag , category='success')
-            return redirect(url_for('auth.session', user = PlayerName))
-
+            return redirect(url_for('auth.game', new_player=current_user))
     return render_template("home.html", new_player=current_user)
