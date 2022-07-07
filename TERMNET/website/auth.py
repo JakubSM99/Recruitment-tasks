@@ -7,10 +7,6 @@ import random
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/statistics')
-def statistics():
-    return render_template("statistics.html", new_player=current_user)
-
 @auth.route('/game', methods=['GET','POST'])
 @login_required
 def game():
@@ -19,11 +15,10 @@ def game():
         lista = ['Rock', 'Paper', 'Scissors']
         cc = random.choice(lista)
         Bet = request.form.get('Bet')
-        
         win = 0
         lose = 0
         if (Bet.capitalize() != 'Rock') and (Bet.capitalize() != 'Paper') and (Bet.capitalize() != 'Scissors'):
-            flash('Wprowadzono niepoprawne dane!', category="success")
+            flash('Wprowadzono niepoprawne dane!', category="error")
         else:
             if Bet.capitalize() == cc:
                 flash(cc, category="error")
@@ -61,17 +56,29 @@ def game():
 @login_required
 def session():
     if request.method == 'POST':
-        return redirect(url_for('auth.game', new_player=current_user))
+        one = request.form.get("1")
+        two = request.form.get("2")
+        if one is not None:
+            flash('player', category="error")
+            return redirect(url_for('auth.game', new_player=current_user))
+        elif two is not None:
+            logout_user()
+            return redirect(url_for('views.home', new_player=current_user))
     return render_template("session.html", new_player=current_user)
-
-@auth.route('/quit')
-@login_required
-def quit():
-    logout_user()
-    return redirect(url_for('views.home', new_player=current_user))
 
 @auth.route('/score', methods=['GET', 'POST'])
 @login_required
 def score():
     if request.method == 'POST':
-        return redirect(url_for('auth.game', new_player=current_user))
+        one = request.form.get("1")
+        two = request.form.get("2")
+        if one is not None:
+            return redirect(url_for('auth.game', new_player=current_user))
+        elif two is not None:
+            return redirect(url_for('auth.session', new_player=current_user))
+    return render_template("score.html", new_player=current_user, session = Session.query.all(), game = Game.query.all(), roundd = Roundd.query.all())
+
+@auth.route('/statistics')
+def statistics():
+    user = Session.query.all()
+    return render_template("statistics.html", new_player=current_user, session = Session.query.all(), game = Game.query.all(), roundd = Roundd.query.all())

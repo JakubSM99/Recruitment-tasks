@@ -1,15 +1,43 @@
 {%extends "base.html"%}
 {% block title %}Statistics{% endblock %}
 {% block content%}
-<h1 align="center"> Statistics </h1>
+<h1 align="center"> Statistics: </h1>
 <br/>
-<ul class="list-group list-group-flush" id="statistics">
-    {% for game in new_player.game %}
-        <li class="list-group-item">
-            {{ game.win , game.lose , game.Kreds, game.data }}
-        </li>
-    {% endfor%}
-</ul>
+<table style="margin-left: 20px;">
+    <th>
+        <tr style="color: black; ">
+
+       <th>Player Name</th>
+       <th>Player Tag</th>
+       <th>Kreds</th>
+
+       </tr>
+   </th>
+   {% for session in session %}
+
+            <tr>
+                <td>
+                    <p>---</p>{{session.PlayerName}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{session.PlayerTag}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{session.Kreds}}<p>---</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{session.PlayerTag}}
+                </td>
+            </tr>
+
+    {% endfor %}
+</table>
 {%endblock%}
 {% block Nazwa %}
 

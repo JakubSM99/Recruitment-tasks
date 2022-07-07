@@ -23,7 +23,7 @@ class Game(db.Model):
     data = db.Column(db.DateTime(timezone = True), default = func.now())
     session_id = db.Column(db.Integer, db.ForeignKey('session.id'))
     round = db.relationship('Roundd')
-  
+    
 
 class Session(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key = True)
