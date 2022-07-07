@@ -41,7 +41,6 @@ def game():
                 flash("You won", category="success")
                 
             else:
-                flash(cc, category="error")
                 lose = lose + 1
                 flash("You lost", category="error")
             
