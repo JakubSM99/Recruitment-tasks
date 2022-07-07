@@ -1,0 +1,22 @@
+{%extends "base.html"%}
+{% block title %}Your Score{% endblock %}
+{% block content%}
+<form method="POST">
+    <h1 align="center">
+        Rock! Paper! Scissors!
+    </h1>
+    <ul class="list-group list-group-flush" id="statistics">
+        {% for game in new_player.game %}
+            <li class="list-group-item">
+                {{ game.win , game.lose , game.Kreds, game.data }}
+            </li>
+        {% endfor%}
+    </ul>
+    <br />
+    <button align="center" type="submit" class="btn btn-primary">Play again</button>
+</form>
+<br />
+{%endblock%}
+{% block Nazwa %}
+
+{% endblock %}

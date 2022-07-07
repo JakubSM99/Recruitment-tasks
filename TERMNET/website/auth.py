@@ -19,6 +19,7 @@ def game():
         lista = ['Rock', 'Paper', 'Scissors']
         cc = random.choice(lista)
         Bet = request.form.get('Bet')
+        
         win = 0
         lose = 0
         if (Bet.capitalize() != 'Rock') and (Bet.capitalize() != 'Paper') and (Bet.capitalize() != 'Scissors'):
@@ -52,7 +53,7 @@ def game():
             new_roundd = Roundd(Bet=Bet, cc=cc, win=win, lose=lose)
             db.session.add(new_roundd)
             db.session.commit()
-        
+            return redirect(url_for('auth.score', new_player=current_user))
 
     return render_template('game.html', new_player=current_user)
 
@@ -68,3 +69,9 @@ def session():
 def quit():
     logout_user()
     return redirect(url_for('views.home', new_player=current_user))
+
+@auth.route('/score', methods=['GET', 'POST'])
+@login_required
+def score():
+    if request.method == 'POST':
+        return redirect(url_for('auth.game', new_player=current_user))
