@@ -2,6 +2,7 @@ from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
+
 class Roundd(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     win = db.Column(db.Integer)
@@ -9,6 +10,7 @@ class Roundd(db.Model):
     Bet = db.Column(db.String(10))
     cc = db.Column(db.String(10))
     game_id = db.Column(db.Integer, db.ForeignKey('game.id'))
+
 
 class Game(db.Model):
     id = db.Column(db.Integer, primary_key = True) 
@@ -34,3 +36,4 @@ class Session(db.Model, UserMixin):
     Bet = db.Column(db.String(10))
     cc = db.Column(db.String(10))    
     game = db.relationship('Game')
+

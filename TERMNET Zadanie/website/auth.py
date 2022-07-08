@@ -132,3 +132,4 @@ def statistics():
     if request.method == 'POST':
         return redirect(url_for('auth.score', new_player=current_user))
     return render_template("statistics.html", new_player=current_user, session = TodaysSession)
+    
