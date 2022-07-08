@@ -1,0 +1,39 @@
+{%extends "base.html"%}
+{% block title %}Game{% endblock %}
+{% block content%}
+<form method="POST">
+    <h1 align="center">
+        Rock! Paper! Scissors!
+    </h1>
+    <div class="form-group">
+        <label for="Bet">Your Bet</label>
+        <input 
+            type="Bet" 
+            class="form-control" 
+            id="Bet" 
+            name="Bet" 
+            placeholder="Enter: Rock, Paper or Scissors!"
+        />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary" name="1" style="float: left;">Submit my Bet</button>
+    <button type="submit" class="btn btn-primary" name="2" style="float: right;">Help</button>
+</form>
+<br />
+<br/>
+<table style="margin-left: 20px;">
+    <tr>
+        <td>
+            <h6>Players Name:</h6>{{PlayerName}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h6>Players Tag:</h6>{{PlayerTag}}
+        </td>
+    </tr>
+</table>
+{%endblock%}
+{% block Nazwa %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{%extends "base.html"%}
+{% block title %}Home{% endblock %}
+{% block content%}
+<form method="POST">
+    <h3 align="center">
+        Welcome To "Rock, Paper, Scissors" Game
+    </h3>
+    <div class="form-group">
+        <label for="PlayerName">Player Name</label>
+        <input 
+            type="PlayerName" 
+            class="form-control" 
+            id="PlayerName" 
+            name="PlayerName" 
+            placeholder="Enter Player Name"
+        />
+    </div>
+    <div class="form-group">
+        <label for="PlayerTag">Player Tag</label>
+        <input 
+            type="PlayerTag" 
+            class="form-control" 
+            id="PlayerTag" 
+            name="PlayerTag" 
+            placeholder="Enter Player Tag"
+        />
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Start The Game</button>
+</form>
+<br/>
+<span>
+    <p align="left">(Costs 2 Kredits)</p>
+</span>
+{%endblock%}
+{% block Nazwa %}
+{% endblock %}

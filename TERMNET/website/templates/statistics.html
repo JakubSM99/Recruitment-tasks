@@ -1,0 +1,24 @@
+{%extends "base.html"%}
+{% block title %}Statistics{% endblock %}
+{% block content%}
+<br/>
+<form method="POST">
+    <button type="submit" name="1" class="btn btn-primary" style="float: left;">My Game</button>
+</form>
+<h1 align="center"> Statistics: </h1>
+<br/>
+<h6> Id Gracza, Nazwa Gracza, Tag Gracza, Ilosc kredytow na koniec, Ilosc wygranych, Ilosc Przegranych, Data Gry, Czas Gry (W Minutach).</h6>
+<table style="margin-left: 20px;">
+   {% for session in session %}
+            <tr>
+                <td>
+                    <p>---</p>{{session.id, session.PlayerName, session.PlayerTag, session.Kreds, session.win, session.lose, session.GameDate, session.GameTime}}
+                </td>
+            </tr>
+
+    {% endfor %}
+</table>
+{%endblock%}
+{% block Nazwa %}
+
+{% endblock %}
